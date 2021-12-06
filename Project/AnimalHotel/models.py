@@ -23,7 +23,7 @@ class owner(models.Model):
 class animal(models.Model):
     Name = models.CharField(max_length=45)
     Age = models.IntegerField()
-    Species = models.ForeignKey(species, on_delete=models.SET_NULL)
+    Species = models.ForeignKey(species, on_delete=models.CASCADE)
     Owner = models.ForeignKey(owner, on_delete=models.CASCADE)
 
     def __str__(self):
