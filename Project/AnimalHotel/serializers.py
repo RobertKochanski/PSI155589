@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Species, Owner, Animal, Reservation
+from .models import Species, User, Animal, Reservation
 
 
 class SpeciesSerializer(serializers.ModelSerializer):
@@ -8,19 +8,19 @@ class SpeciesSerializer(serializers.ModelSerializer):
         fields = ['id', 'url', 'name']
 
 
-class OwnerSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Owner
+        model = User
         fields = ['id', 'url', 'firstname', 'lastname', 'email', 'password']
 
 
 class AnimalSerializer(serializers.HyperlinkedModelSerializer):
     species = serializers.SlugRelatedField(queryset=Species.objects.all(), slug_field='name')
-    owner = serializers.HyperlinkedRelatedField(many=False, queryset=Owner.objects.all(), view_name='user-detail')
+    user = serializers.HyperlinkedRelatedField(many=False, queryset=User.objects.all(), view_name='user-detail')
 
     class Meta:
         model = Animal
-        fields = ['id', 'url', 'name', 'age', 'species', 'owner']
+        fields = ['id', 'url', 'name', 'age', 'species', 'user']
 
 
 class ReservationSerializer(serializers.HyperlinkedModelSerializer):

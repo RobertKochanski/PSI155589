@@ -8,7 +8,7 @@ class Species(models.Model):
         return self.name
 
 
-class Owner(models.Model):
+class User(models.Model):
     firstName = models.CharField(max_length=45)
     lastName = models.CharField(max_length=45)
     email = models.EmailField(unique=True)
@@ -24,7 +24,7 @@ class Animal(models.Model):
     name = models.CharField(max_length=45)
     age = models.IntegerField()
     species = models.ForeignKey(Species, on_delete=models.CASCADE)
-    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
