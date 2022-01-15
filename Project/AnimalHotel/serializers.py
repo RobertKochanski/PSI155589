@@ -5,13 +5,13 @@ from .models import Species, User, Animal, Reservation
 class SpeciesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Species
-        fields = ['id', 'url', 'name']
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'url', 'firstname', 'lastname', 'email', 'password']
+        fields = '__all__'
 
 
 class AnimalSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,7 +20,7 @@ class AnimalSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Animal
-        fields = ['id', 'url', 'name', 'age', 'species', 'user']
+        fields = '__all__'
 
 
 class ReservationSerializer(serializers.HyperlinkedModelSerializer):
@@ -28,4 +28,4 @@ class ReservationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Reservation
-        fields = ['id', 'url', 'startDate', 'endDate', 'user', 'animal', 'comments', 'cost']
+        fields = '__all__'
