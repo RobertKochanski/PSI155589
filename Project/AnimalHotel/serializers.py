@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AnimalSerializer(serializers.HyperlinkedModelSerializer):
+class AnimalSerializer(serializers.HyperlinkedRelatedField):
     species = serializers.SlugRelatedField(queryset=Species.objects.all(), slug_field='name')
     user = serializers.HyperlinkedRelatedField(many=False, queryset=User.objects.all(), view_name='user-detail')
 
@@ -23,7 +23,7 @@ class AnimalSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class ReservationSerializer(serializers.HyperlinkedModelSerializer):
+class ReservationSerializer(serializers.HyperlinkedRelatedField):
     animal = serializers.HyperlinkedRelatedField(queryset=Animal.objects.all(), view_name='animal-detail')
 
     class Meta:

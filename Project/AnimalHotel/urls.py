@@ -3,7 +3,6 @@ from . import views
 
 app_name = 'api_v1'
 urlpatterns = [
-
     path('species', views.SpeciesList.as_view(), name=views.SpeciesList.name),
     path('species/<int:pk>', views.SpeciesDetail.as_view(), name=views.SpeciesDetail.name),
 
