@@ -14,18 +14,22 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AnimalSerializer(serializers.HyperlinkedRelatedField):
+class AnimalSerializer(serializers.HyperlinkedModelSerializer):
     species = serializers.SlugRelatedField(queryset=Species.objects.all(), slug_field='name')
-    user = serializers.HyperlinkedRelatedField(many=False, queryset=User.objects.all(), view_name='user-detail')
+    # nie działa
+    # user = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail')
+    user = serializers.ReadOnlyField(source='user.id')
 
     class Meta:
         model = Animal
-        fields = '__all__'
+        fields = ['id', 'name', 'age', 'species', 'user']
 
 
-class ReservationSerializer(serializers.HyperlinkedRelatedField):
-    animal = serializers.HyperlinkedRelatedField(queryset=Animal.objects.all(), view_name='animal-detail')
+class ReservationSerializer(serializers.HyperlinkedModelSerializer):
+    # nie działa
+    # animal = serializers.HyperlinkedRelatedField(queryset=Animal.objects.all(), view_name='animal-detail')
+    animal = serializers.ReadOnlyField(source='animal.id')
 
     class Meta:
         model = Reservation
-        fields = '__all__'
+        fields = ['id', 'startDate', 'endDate', 'animal', 'comments', 'cost']

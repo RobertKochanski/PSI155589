@@ -70,14 +70,14 @@ class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     name = 'reservation-detail'
 
-#
-# class ApiRoot(generics.GenericAPIView):
-#     name = "api-root"
-#
-#     def get(self, request, *args, **kwargs):
-#         return Response({
-#             'species': reverse(SpeciesList.name, request=request),
-#             'user': reverse(UserList.name, request=request),
-#             'animals': reverse(AnimalList.name, request=request),
-#             'reservations': reverse(ReservationList.name, request=request)
-#         })
+
+class ApiRoot(generics.GenericAPIView):
+    name = 'api-root'
+
+    def get(self, request, *args, **kwargs):
+        return Response({
+            'species': request.build_absolute_uri('species'),
+            'users': request.build_absolute_uri('user'),
+            'animals': request.build_absolute_uri('animal'),
+            'reservations': request.build_absolute_uri('reservation')
+        })
