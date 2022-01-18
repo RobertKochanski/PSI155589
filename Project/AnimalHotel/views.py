@@ -1,3 +1,4 @@
+from django_filters import FilterSet, DateTimeFilter
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -28,9 +29,9 @@ class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     name = 'user-list'
     permission_classes = [permissions.IsAdminUser]
-    filterset_fields = ['firstname', 'lastname', 'email']
-    search_fields = ['lastname', 'email']
-    ordering_fields = ['firstname', 'lastname', 'email']
+    filterset_fields = ['firstName', 'lastName', 'email']
+    search_fields = ['lastName', 'email']
+    ordering_fields = ['firstName', 'lastName', 'email']
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -47,7 +48,7 @@ class AnimalList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAdminUser]
     filterset_fields = ['name', 'age']
     search_fields = ['name']
-    ordering_fields = ['name', 'age']
+    ordering_fields = ['name', 'age', 'species']
 
 
 class AnimalDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -62,6 +63,7 @@ class ReservationList(generics.ListCreateAPIView):
     serializer_class = ReservationSerializer
     permission_classes = [permissions.IsAdminUser]
     name = 'reservation-list'
+    ordering_fields = ['startDate', 'endDate', 'cost']
 
 
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):

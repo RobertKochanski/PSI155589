@@ -18,7 +18,7 @@ class AnimalSerializer(serializers.HyperlinkedModelSerializer):
     species = serializers.SlugRelatedField(queryset=Species.objects.all(), slug_field='name')
     # nie działa
     # user = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail')
-    user = serializers.ReadOnlyField(source='user.id')
+    user = serializers.ReadOnlyField(source='user.email')
 
     class Meta:
         model = Animal
@@ -27,8 +27,8 @@ class AnimalSerializer(serializers.HyperlinkedModelSerializer):
 
 class ReservationSerializer(serializers.HyperlinkedModelSerializer):
     # nie działa
-    # animal = serializers.HyperlinkedRelatedField(queryset=Animal.objects.all(), view_name='animal-detail')
-    animal = serializers.ReadOnlyField(source='animal.id')
+    # animal = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='animal-detail')
+    animal = serializers.ReadOnlyField(source='animal.name')
 
     class Meta:
         model = Reservation
