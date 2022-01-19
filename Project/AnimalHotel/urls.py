@@ -1,4 +1,6 @@
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+
 from . import views
 
 app_name = 'api_v1'
@@ -16,5 +18,9 @@ urlpatterns = [
 
     path('reservation', views.ReservationList.as_view(), name=views.ReservationList.name),
     path('reservation/<int:pk>', views.ReservationDetail.as_view(), name=views.ReservationDetail.name),
+
+    path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/verify', TokenVerifyView.as_view(), name='token_verify'),
 
 ]
