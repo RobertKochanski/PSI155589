@@ -17,12 +17,12 @@ class UserSerializer(serializers.ModelSerializer):
 class AnimalSerializer(serializers.HyperlinkedModelSerializer):
     species = serializers.SlugRelatedField(queryset=Species.objects.all(), slug_field='name')
     # nie działa
-    # user = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail')
-    user = serializers.ReadOnlyField(source='user.email')
+    # owner = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='user-detail')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Animal
-        fields = ['id', 'name', 'age', 'species', 'user']
+        fields = ['id', 'name', 'age', 'species', 'owner']
 
 
 class ReservationSerializer(serializers.HyperlinkedModelSerializer):

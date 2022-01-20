@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import User, Species, Reservation, Animal
-
-admin.site.register(User)
+from .models import Species, Reservation, Animal
 
 
 @admin.register(Species)
