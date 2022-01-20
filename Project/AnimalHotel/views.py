@@ -81,8 +81,9 @@ class ApiRoot(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         return Response({
-            'species': request.build_absolute_uri('species'),
-            'users': request.build_absolute_uri('user'),
-            'animals': request.build_absolute_uri('animal'),
-            'reservations': request.build_absolute_uri('reservation')
+            'species': reverse(SpeciesList.name, request=request),
+            'user': reverse(UserList.name, request=request),
+            'animals': reverse(AnimalList.name, request=request),
+            'reservations': reverse(ReservationList.name, request=request)
         })
+
