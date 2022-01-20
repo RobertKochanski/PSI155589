@@ -7,7 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Species, User, Animal, Reservation
 from .serializers import SpeciesSerializer, UserSerializer, AnimalSerializer, ReservationSerializer
-from .custompermission import IsOwnerOrReadOnly
+from .custompermission import IsOwnerOrAdmin
 
 
 class SpeciesList(generics.ListCreateAPIView):
@@ -41,7 +41,7 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     name = 'user-detail'
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrAdmin]
 
 
 class AnimalList(generics.ListCreateAPIView):
@@ -58,7 +58,7 @@ class AnimalDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Animal.objects.all()
     serializer_class = AnimalSerializer
     name = 'animal-detail'
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrAdmin]
 
 
 class ReservationList(generics.ListCreateAPIView):
@@ -72,7 +72,7 @@ class ReservationList(generics.ListCreateAPIView):
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrAdmin]
     name = 'reservation-detail'
 
 
