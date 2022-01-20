@@ -1,13 +1,10 @@
-from django_filters import FilterSet, DateTimeFilter
-from rest_framework.reverse import reverse
-from rest_framework.views import APIView
+from rest_framework import permissions, generics
 from rest_framework.response import Response
-from rest_framework import authentication, permissions, generics, status
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.reverse import reverse
 
+from .custompermission import IsOwnerOrAdmin
 from .models import Species, User, Animal, Reservation
 from .serializers import SpeciesSerializer, UserSerializer, AnimalSerializer, ReservationSerializer
-from .custompermission import IsOwnerOrAdmin
 
 
 class SpeciesList(generics.ListCreateAPIView):

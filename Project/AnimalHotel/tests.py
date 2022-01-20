@@ -1,11 +1,11 @@
-from rest_framework.test import APITestCase, APIClient
-from rest_framework.reverse import reverse
-from . import views
-from .models import Species, User
-from rest_framework import status
-from django.utils.http import urlencode
-from django import urls
 from django.contrib.auth.models import User
+from django.utils.http import urlencode
+from rest_framework import status
+from rest_framework.reverse import reverse
+from rest_framework.test import APITestCase, APIClient
+
+from . import views
+from .models import Species
 
 
 class SpeciesTests(APITestCase):
